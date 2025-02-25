@@ -1,3 +1,5 @@
+from sys import exit
+
 import pygame
 from constants import SCREEN_HEIGHT, SCREEN_WIDTH
 from player import Player
@@ -30,6 +32,10 @@ def main():
 
         screen.fill("black")
         updatables.update(delta)
+        for asteroid in asteroids:
+            if asteroid.isCollision(player):
+                print("Game over!")
+                exit()
         for drawable in drawables:
             drawable.draw(screen)
         pygame.display.flip()
